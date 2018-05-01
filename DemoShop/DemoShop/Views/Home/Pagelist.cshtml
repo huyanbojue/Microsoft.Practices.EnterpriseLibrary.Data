@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Page-List-1";
+}
+@model DemoShop.Models.CategoryPage
+
+<div class="row">
+    <div class="panel panel-default">
+        <h4>Category *Stop watch = @ViewBag.stopwatch</h4>
+    </div>
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Alias</th>
+                <th>Content</th>
+                <th>ParentId</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ListCategory)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.Alias</td>
+                    <td>@item.Content</td>
+                    <td>@item.ParentId</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="panel panel-default">
+        @for (int i = 1; i <= @ViewBag.totalpage; i++)
+        {
+            <a href="@Url.Action("Pagelist","Home",new { pageindex = i},null)" style="font-size:16px">@i</a>
+        }
+    </div>
+</div>

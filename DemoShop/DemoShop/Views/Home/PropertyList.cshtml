@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "PropertyList";
+}
+@model DemoShop.Models.PropertyIndex
+
+<div class="row">
+    <div class="panel panel-default">
+        <h4>Category  *Stop watch = @ViewBag.stopwatch</h4>
+    </div>
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>PriceProposedInVND</th>
+                <th>AlleyWidth</th>
+                <th>AdsType</th>
+                <th>Location</th>
+                <th>Location ID</th>
+                <th>PaymentMethod</th>
+                <th>PaymentMethod ID</th>
+                @*<th>Image</th>*@
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ListProperties)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.PriceProposedInVND</td>
+                    <td>@item.AlleyWidth</td>
+                    <td>@item.AdsType.ShortName</td>
+                    <td>@item.Location.ShortName</td>
+                    <td>@item.Location.Id</td>
+                    <td>@item.PaymentMethod.ShortName</td>
+                    <td>@item.PaymentMethod.Id</td>
+                    @*<td>
+                        <img src="https://dulieunhadat.vn/@item.ImageDefaultAvatar" class="img" style="width:100px;height:50px">
+                    </td>*@
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="panel panel-default">
+        @for (int i = 1; i <= ViewBag.totalpage; i++)
+        {
+            <a href="@Url.Action("PropertyList","Home",new { pageindex = i},null)" style="font-size:16px">@i</a>
+        }
+    </div>
+</div>
